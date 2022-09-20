@@ -1,0 +1,42 @@
+const mongoose=require("mongoose")
+const schema=mongoose.Schema;
+const blogsSchema=new schema({
+    
+    propertyType:{type:String},
+    negotable:{type:String},
+    price:{type:Number},
+    ownerShip:{type:String},
+    propertyAge:{type:Number},
+    propertyApproved:{type:String},
+    propertyDescription:{type:String},
+    bankLoan:{type:String},
+    length:{type:String},
+    breath:{type:String},
+    toatalArea:{type:String},
+    areaUnit:{type:String},
+    noOfBhk:{type:String},
+    noOfFloor:{type:String},
+    attached:{type:String},
+    westernToilet:{type:String},
+    furnished:{type:String},
+    carParking:{type:String},
+    lift:{type:String},
+    electricity:{type:String},
+    facing:{type:String},
+    name:{type:String},
+    mobile:{type:String},
+    postedBy:{type:String},
+    saleType:{type:String},
+    featuredPackage:{type:String},
+    ppdPackage:{type:String},
+    email:{type:String},
+    city:{type:String},
+    area:{type:String},
+    pincode:{type:String},
+    address:{type:String},
+    landMark:{type:String},
+    latitude:{type:String},
+    longitude:{type:String},
+
+})
+module.exports=mongoose.model("form",blogsSchema)
