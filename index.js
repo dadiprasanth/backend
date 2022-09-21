@@ -1,5 +1,8 @@
 const express=require("express")
 const mongoose=require("mongoose")
+const bodyparser=require("body-parser")
+const property=require("./routes/propertyroute")
+const cors=require("cors")
 const app=express()
 const port=8080
 app.listen(port,()=>console.log(`app is listening at${port}`))
@@ -10,3 +13,6 @@ mongoose.connect('mongodb://localhost/my_database',err=>{
         console.log("connected to database")
     }
 })
+app.use(cors())
+app.use(bodyparser.json())
+app.use("/property",property)  
