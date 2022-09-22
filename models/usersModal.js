@@ -2,7 +2,8 @@ const mongoose=require("mongoose")
 const studentSchema= mongoose.Schema({
     MailID:{
         required:true,
-        type:String
+        type:String,
+        unique: true
     },
     password:{
         required:true,
