@@ -16,17 +16,31 @@ route.post("/add",async(req,res)=>{
         })
     }
 })
-route.get("/all",async(req,res)=>{
+// route.get("/all",async(req,res)=>{
+//     try{
+//         const data=await blogs.find().sort({date:-1})
+//         return res.status(200).json({
+//             message:"sucess",
+//             data
+//         })
+//     }catch(e){
+//         return res.status(404).json({
+//             status:"erroe",
+//             message:e.message
+//         })
+//     }
+// })
+route.get("/" ,async(req,res)=>{
+
     try{
-        const data=await blogs.find()
-        return res.status(200).json({
-            message:"sucess",
-            data
-        })
+         const info = await blogs.find();
+         console.log(info)
+        console.log("hii")
+        res.status(200).send(info);
+        
     }catch(e){
-        return res.status(404).json({
-            status:"erroe",
-            message:e.message
+        res.status(400).json({
+            erroe:e.message
         })
     }
 })

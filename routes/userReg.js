@@ -3,6 +3,8 @@ const express=require("express")
 const bcrypt = require('bcrypt');
 const router=express.Router()
 const user=require("../models/usersModal")
+const jwt = require('jsonwebtoken');
+const secret="sugar"
 
 router.post("/add",async( req,res)=>{
 
@@ -72,6 +74,19 @@ router.post("/add",async( req,res)=>{
             })
         }else{
             if(result){
+
+                //token part is doing here
+            const token= jwt.sign({
+                    exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                    data: data._id
+                  }, secret);
+                  console.log(token)
+
+
+
+
+
+
 
                return res.status(200).json({
                     status:"Success",
