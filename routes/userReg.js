@@ -1,14 +1,9 @@
-const { response } = require("express")
+
 const express=require("express")
-const mongoose=require("mongoose")
+
 const router=express.Router()
 const user=require("../models/usersModal")
-mongoose.connect("mongodb://localhost/Users",(err)=>{
-    if(err){
-        console.log(err)
-    }
-    console.log("connected")
-})
+
 
 router.post("/add",async( req,res)=>{
  try{

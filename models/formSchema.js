@@ -1,7 +1,11 @@
 const mongoose=require("mongoose")
 const schema=mongoose.Schema;
 const blogsSchema=new schema({
-    
+    ppdid:{type:String,required:true},
+    views:{type:Number,required:true},
+    days:{type:Number,required:true},
+    status:{type:String,required:true},
+    date:{type:String,required:true},
     propertyType:{type:String},
     negotable:{type:String},
     price:{type:Number},

@@ -1,0 +1,2 @@
+[frount]---->[usold]--->[sold]---->[daysleft0]
+[backend]--->[login]-->[putdat]--->
