@@ -48,13 +48,14 @@ router.post("/add",async( req,res)=>{
    
     }
    })
+
    router.post("/login", async(req,res)=>{
     try{
-      const {email,password}=req.body
-      console.log(password)
-      const data= await user.findOne({MailID:email})
-      console.log(data)
-      console.log(data.password)
+      const {MailID,password}=req.body
+    //   console.log(password)
+      const data= await user.findOne({MailID})
+      //console.log(data)
+    //   console.log(data.password)
 
       if(!data){
         return res.status(400).json({
@@ -62,23 +63,37 @@ router.post("/add",async( req,res)=>{
             message:"User is not registered"
 
         })
-      }
+      }else{
       bcrypt.compare(password,data.password,function(err,result){
         if(err){
             res.status(500).json({
                 status:"failed",
                 message:err.message
             })
-        }
-        res.json({
-            status:"Success"
-        })
+        }else{
+            if(result){
+
+               return res.status(200).json({
+                    status:"Success",
+                    message:"true"
+                })
+            }
+                else{
+                    return res.status(200).json({
+                        status:"error",
+                        message:"password is incorrect"
+                    })
+                    
+
+                }
+    }
       })
+    }
     }
     catch(e){
         res.status(500).json({
             status:"failed",
-            message:"e.message"
+            message:e.message
         })
     }
 })
