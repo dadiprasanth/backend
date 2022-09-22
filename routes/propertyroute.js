@@ -34,8 +34,6 @@ route.get("/" ,async(req,res)=>{
 
     try{
          const info = await blogs.find();
-         console.log(info)
-        console.log("hii")
         res.status(200).send(info);
         
     }catch(e){
