@@ -20,7 +20,8 @@ route.get("/all",async(req,res)=>{
     try{
         const data=await blogs.find()
         return res.status(200).json({
-            message:"sucess"
+            message:"sucess",
+            data
         })
     }catch(e){
         return res.status(404).json({
