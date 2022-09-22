@@ -51,4 +51,38 @@ router.post("/add",async( req,res)=>{
    
     }
    })
+   router.post("/login", async(req,res)=>{
+    try{
+      const {email,password}=req.body
+      console.log(password)
+      const data= await user.findOne({MailID:email})
+      console.log(data)
+      console.log(data.password)
+
+      if(!data){
+        return res.status(400).json({
+            status:"failed",
+            message:"User is not registered"
+
+        })
+      }
+      bcrypt.compare(password,data.password,function(err,result){
+        if(err){
+            res.status(500).json({
+                status:"failed",
+                message:err.message
+            })
+        }
+        res.json({
+            status:"Success"
+        })
+      })
+    }
+    catch(e){
+        res.status(500).json({
+            status:"failed",
+            message:"e.message"
+        })
+    }
+})
 module.exports=router
