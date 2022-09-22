@@ -42,3 +42,15 @@ route.get("/" ,async(req,res)=>{
         })
     }
 })
+
+route.put("/" ,async(req,res)=>{
+
+    try{
+        const info = await data.updateOne(req.body, {$set:{status:"Sold" , days:"0"}});
+        res.status(200).json({status: "succes", message:"status is updated"})
+    }catch(e){
+        res.status(400).json({
+            erroe:e.message
+        })
+    }
+})
