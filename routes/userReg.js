@@ -15,7 +15,7 @@ router.post("/add",async( req,res)=>{
             if(chekdata!=null){
                 return res.status(400).json({
                     status:"error",
-                    message:"user is already registerd go to signin page "
+                    message:"User is already registerd  "
 
                 })
             } else{
