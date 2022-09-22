@@ -40,9 +40,6 @@ router.post("/add",async( req,res)=>{
             }  
         }      
         check()
-      
-
-
     }
     catch(e){
        res.status(500).json({
