@@ -38,7 +38,7 @@ router.post("/add",async( req,res)=>{
                       
                                      })  
           
-                  })
+                  })  
                 
             }  
         }      
@@ -82,7 +82,7 @@ router.post("/add",async( req,res)=>{
                     exp: Math.floor(Date.now() / 1000) + (60 * 60),
                     data: data._id
                   }, secret);
-                  console.log(token)
+                //   console.log(token)
 
 
 
@@ -93,7 +93,8 @@ router.post("/add",async( req,res)=>{
                return res.status(200).json({
                     status:"Success",
                     message:"details matched",
-                    token
+                    token,
+                    id:data._id
                 })
             }
                 else{

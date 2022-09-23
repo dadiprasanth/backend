@@ -17,11 +17,11 @@ route.post("/add",async(req,res)=>{
                     message:err.message
                 })
             }else{
-                    const data=await blogs.findOne({_id:decoded.data})
+                   try{ const data=await blogs.findOne({_id:decoded.data})
                     if(!data){
                         await blogs.create({...req.body,ppdid:i++})
                         return res.status(200).json({
-                            message:"sucess"
+                            message:"success"
                         })
 
                     }else{
@@ -29,6 +29,12 @@ route.post("/add",async(req,res)=>{
                             status:"error",
                             message:"failed"})
 
+                    }}
+                    catch(e){
+                        return res.status(404).json({
+                            status:"error",
+                            message:e.message
+                        })
                     }
             }
             
@@ -88,11 +94,29 @@ route.get("/" ,async(req,res)=>{
 route.put("/" ,async(req,res)=>{
 
     try{
-        const info = await data.updateOne(req.body, {$set:{status:"Sold" , days:"0"}});
-        res.status(200).json({status: "succes", message:"status is updated"})
+        jwt.verify(req.headers.authorization, secret,async function(err, decoded) {
+            if(err){
+                res.status(400).json({
+                    status:"error",
+                    message:err.message
+                })
+            }else{
+                try{
+                    console.log(req.body)
+            const info = await blogs.updateOne(req.body, {$set:{status:"Sold" , days:0}});
+            
+             res.status(200).json({status: "succes", message:"status is updated"})
+            }catch(e){
+                res.status(400).json({
+                    mesage:e.message
+                })
+            }
+        }
+        })
+
     }catch(e){
         res.status(400).json({
-            erroe:e.message
+            message:e.message
         })
     }
 })
