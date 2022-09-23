@@ -9,10 +9,11 @@ const secret="sugar"
 router.post("/add",async( req,res)=>{
 
 
-    try{
+    try{ 
         const {MailID,password}=req.body
+        console.log(req.body)
         const check=async()=>{
-        const chekdata=await user.findOne({MailID:MailID})
+        const chekdata=await user.findOne({MailID})
         
             if(chekdata!=null){
                 return res.status(400).json({
@@ -28,7 +29,7 @@ router.post("/add",async( req,res)=>{
                           message:err.message
                       })
                     }
-                  const data=await user.create({MailID:MailID,password:hash})
+                  const data=await user.create({MailID,password:hash})
                   console.log(data)
              
                   res.status(200).json({ 
@@ -53,9 +54,10 @@ router.post("/add",async( req,res)=>{
 
    router.post("/login", async(req,res)=>{
     try{
-      const {MailID,password}=req.body
+        
+      const {userid,password}=req.body
     //   console.log(password)
-      const data= await user.findOne({MailID})
+      const data= await user.findOne({MailID:userid})
       //console.log(data)
     //   console.log(data.password)
 
@@ -90,7 +92,8 @@ router.post("/add",async( req,res)=>{
 
                return res.status(200).json({
                     status:"Success",
-                    message:"true"
+                    message:"details matched",
+                    token
                 })
             }
                 else{

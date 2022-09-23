@@ -1,14 +1,39 @@
+const { request } = require("express");
 const express=require("express")
 const blogs=require("../models/formSchema")
+const jwt=require("jsonwebtoken");
+const e = require("express");
 const route=express.Router();
+const secret="sugar"
 module.exports=route
 var i=354353;
 route.post("/add",async(req,res)=>{
     try{
-        await blogs.create({...req.body,ppdid:i++})
-        return res.status(200).json({
-            message:"sucess"
-        })
+        //token authentication & add
+        jwt.verify(req.headers.authorization, secret,async function(err, decoded) {
+            if(err){
+                res.status(400).json({
+                    status:"error",
+                    message:err.message
+                })
+            }else{
+                    const data=await blogs.findOne({_id:decoded.data})
+                    if(!data){
+                        await blogs.create({...req.body,ppdid:i++})
+                        return res.status(200).json({
+                            message:"sucess"
+                        })
+
+                    }else{
+                        return res.status(404).json({
+                            status:"error",
+                            message:"failed"})
+
+                    }
+            }
+            
+          });
+      
     }catch(e){
         return res.status(404).json({
             status:"error",
@@ -33,9 +58,26 @@ route.post("/add",async(req,res)=>{
 route.get("/" ,async(req,res)=>{
 
     try{
-         const info = await blogs.find();
-        res.status(200).send(info);
-        
+        //token authoentication &find 
+        jwt.verify(req.headers.authorization, secret,async function(err, decoded) {
+            if(err){
+                res.status(400).json({
+                    status:"error",
+                    message:err.message
+                })
+            }else{
+                    const data=await blogs.findOne({_id:decoded.data})
+                    if(!data){
+                             const info = await blogs.find();
+                             res.status(200).send(info);
+                            }else{
+                                return res.status(404).json({
+                                    status:"error",
+                                    message:"failed"})
+                            }
+                        }
+
+                    })
     }catch(e){
         res.status(400).json({
             erroe:e.message
