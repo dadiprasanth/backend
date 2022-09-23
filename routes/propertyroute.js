@@ -74,7 +74,7 @@ route.get("/" ,async(req,res)=>{
             }else{
                     const data=await blogs.findOne({_id:decoded.data})
                     if(!data){
-                             const info = await blogs.find();
+                             const info = await blogs.find().sort({date:-1});
                              res.status(200).send(info);
                             }else{
                                 return res.status(404).json({
