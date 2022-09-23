@@ -10,7 +10,7 @@ const blogsSchema=new schema({
     negotable:{type:String},
     price:{type:Number},
     ownerShip:{type:String},
-    propertyAge:{type:Number},
+    propertyAge:{type:String},
     propertyApproved:{type:String},
     propertyDescription:{type:String},
     bankLoan:{type:String},
