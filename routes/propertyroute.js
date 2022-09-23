@@ -94,6 +94,7 @@ route.get("/" ,async(req,res)=>{
 route.put("/" ,async(req,res)=>{
 
     try{
+
         jwt.verify(req.headers.authorization, secret,async function(err, decoded) {
             if(err){
                 res.status(400).json({
@@ -114,6 +115,9 @@ route.put("/" ,async(req,res)=>{
         }
         })
 
+
+       
+      
     }catch(e){
         res.status(400).json({
             message:e.message

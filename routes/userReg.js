@@ -11,7 +11,7 @@ router.post("/add",async( req,res)=>{
 
     try{ 
         const {MailID,password}=req.body
-        console.log(req.body)
+        console.log(req.body)  
         const check=async()=>{
         const chekdata=await user.findOne({MailID})
         
