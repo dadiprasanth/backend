@@ -96,3 +96,15 @@ route.put("/" ,async(req,res)=>{
         })
     }
 })
+
+route.put("/" ,async(req,res)=>{
+
+    try{
+        const info = await blogs.updateOne(req.body, {$set:{days:"0"}});
+        res.status(200).json({status: "succes", message:"status is updated"})
+    }catch(e){
+        res.status(400).json({
+            erroe:e.message
+        })
+    }
+})
