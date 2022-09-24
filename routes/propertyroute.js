@@ -2,7 +2,7 @@ const { request } = require("express");
 const express=require("express")
 const blogs=require("../models/formSchema")
 const jwt=require("jsonwebtoken");
-const e = require("express");
+const user=require("../models/usersModal")
 const route=express.Router();
 const secret="sugar"
 module.exports=route
@@ -17,8 +17,8 @@ route.post("/add",async(req,res)=>{
                     message:err.message
                 })
             }else{
-                   try{ const data=await blogs.findOne({_id:decoded.data})
-                    if(!data){
+                   try{ const data=await user.findOne({_id:decoded.data})
+                    if(data){
                         await blogs.create({...req.body,ppdid:i++})
                         return res.status(200).json({
                             message:"success"
@@ -72,8 +72,9 @@ route.get("/" ,async(req,res)=>{
                     message:err.message
                 })
             }else{
-                    const data=await blogs.findOne({_id:decoded.data})
-                    if(!data){
+                    const data=await user.findOne({_id:decoded.data})
+                //       console.log(data)
+                    if(data){
                              const info = await blogs.find().sort({date:-1});
                              res.status(200).send(info);
                             }else{
@@ -102,14 +103,20 @@ route.put("/" ,async(req,res)=>{
                     message:err.message
                 })
             }else{
+                const data=await user.findOne({_id:decoded.data})
+                if(data){
                 try{
-                    console.log(req.body)
-            const info = await blogs.updateOne(req.body, {$set:{status:"Sold" , days:0}});
+          //          console.log(req.body)
+                    const info = await blogs.updateOne(req.body, {$set:{status:"Sold" , days:0}});
             
              res.status(200).json({status: "succes", message:"status is updated"})
             }catch(e){
                 res.status(400).json({
                     mesage:e.message
+                })
+            }}else{
+                res.status(400).json({
+                    message:"token not matched"
                 })
             }
         }

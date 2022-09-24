@@ -30,7 +30,7 @@ router.post("/add",async( req,res)=>{
                       })
                     }
                   const data=await user.create({MailID,password:hash})
-                  console.log(data)
+                  //console.log(data)
              
                   res.status(200).json({ 
                                         status:"success",
