@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const router=express.Router()
 const user=require("../models/usersModal")
 const jwt = require('jsonwebtoken');
+const { route } = require("./propertyroute");
 const secret="sugar"
 
 router.post("/add",async( req,res)=>{
@@ -115,5 +116,11 @@ router.post("/add",async( req,res)=>{
             message:e.message
         })
     }
+})
+route.get("/all",async(req,res)=>{
+    const data=await user.find()
+    return res.status(200).json({
+        data
+    })
 })
 module.exports=router
