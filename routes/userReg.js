@@ -118,9 +118,13 @@ router.post("/add",async( req,res)=>{
     }
 })
 route.get("/all",async(req,res)=>{
+    try{
     const data=await user.find()
     return res.status(200).json({
         data
-    })
+    })}
+    catch(e){
+       return res.status(400).json({message:e.message}) 
+    }
 })
 module.exports=router
