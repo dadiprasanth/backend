@@ -117,7 +117,7 @@ router.post("/add",async( req,res)=>{
         })
     }
 })
-route.get("/all",async(req,res)=>{
+router.get("/all",async(req,res)=>{
     try{
     const data=await user.find()
     return res.status(200).json({
