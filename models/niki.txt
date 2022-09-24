@@ -8,8 +8,12 @@
 [mongodb server-aws-mumbai]---[herokoserver]
 [heroku dwnload]---->git &heroku
 
--------npm start------->app.listen(port=>())---->8080
+-------npm start node index.js------->app.listen(port=>())---->8080
 .git init
 .git add .
 .git commit -m ""
+.heroku login
+.heroku create <app.name>
+
+
 
