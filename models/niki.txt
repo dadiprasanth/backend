@@ -1,2 +1,15 @@
 [frount]---->[usold]--->[sold]---->[daysleft0]
 [backend]--->[login]-->[putdat]--->
+
+---------------deployment-------------
+[backend]---->[server]----->[frontend]
+
+[mongodb server-aws-mumbai]---local8080 with link----local3000
+[mongodb server-aws-mumbai]---[herokoserver]
+[heroku dwnload]---->git &heroku
+
+-------npm start------->app.listen(port=>())---->8080
+.git init
+.git add .
+.git commit -m ""
+
