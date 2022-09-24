@@ -7,7 +7,7 @@ const cors=require("cors")
 const app=express()
 const port=8080
 app.listen(port,()=>console.log(`app is listening at${port}`))
-mongoose.connect('mongodb://localhost/my_database',err=>{
+mongoose.connect('mongodb+srv://pankajMali:pankaj98@cluster0.dj3vt0p.mongodb.net/realestate',err=>{
     if(err){
         console.log("connection failed")
     }else{
