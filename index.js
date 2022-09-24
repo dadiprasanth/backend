@@ -5,9 +5,9 @@ const property=require("./routes/propertyroute")
 const user=require('./routes/userReg')
 const cors=require("cors")
 const app=express()
-const port=process.env.PORT||8080
+const port=process.env.PORT||8080  
 app.listen(port,()=>console.log(`app is listening at${port}`))
-mongoose.connect('mongodb://localhost/my_database',err=>{
+mongoose.connect('mongodb+srv://dadiprasanth24:9963753437@cluster0.gglcimt.mongodb.net/realestate',err=>{
     if(err){
         console.log("connection failed")
     }else{
