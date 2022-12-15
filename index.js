@@ -19,3 +19,8 @@ mongoose.connect('mongodb+srv://dadiprasanth24:9963753437@cluster0.gglcimt.mongo
 app.use(bodyparser.json())
 app.use("/property",property) 
 app.use("/users",user)
+app.get("/",(req,res)=>{
+    res.status(200).json({
+        mesage:"sucess"
+    })
+})
